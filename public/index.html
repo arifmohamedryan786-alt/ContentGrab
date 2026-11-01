@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <title>ContentGrab</title>
+  <meta name="description" content="ContentGrab — Fast and local media downloader for Instagram Videos, Reels, Photos, and Profile Pictures (DP).">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Animated Welcome Screen (Cinematic Brand Portal) -->
+  <div id="welcome-screen" class="welcome-screen" aria-hidden="true">
+    <div class="cinematic-stage" id="cinematic-stage">
+      
+      <!-- 1 & 2. Portal Ring System & Orbiting Content Icons -->
+      <div class="portal-viewport">
+        <!-- Ambient Depth Lighting -->
+        <div class="portal-glow-ambient"></div>
+        
+        <!-- Glowing 3D Portal Rings -->
+        <div class="portal-rings-wrap">
+          <div class="portal-ring portal-ring-primary"></div>
+          <div class="portal-ring portal-ring-secondary"></div>
+          <div class="portal-shockwave"></div>
+        </div>
+
+        <!-- Orbiting Content Icons: Reels, Photo, DP -->
+        <div class="portal-orbit-track">
+          <!-- Reels Icon -->
+          <div class="orbit-node node-reels" title="Reels">
+            <div class="orbit-icon-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                <circle cx="12" cy="12" r="9"></circle>
+                <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
+              </svg>
+            </div>
+          </div>
+          <!-- Post Icon -->
+          <div class="orbit-node node-post" title="Post">
+            <div class="orbit-icon-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+          </div>
+          <!-- DP (Profile) Icon -->
+          <div class="orbit-node node-dp" title="Profile DP">
+            <div class="orbit-icon-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                <circle cx="12" cy="9" r="4"></circle>
+                <path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 & 4. Merged Download Icon & Brand Reveal -->
+      <div class="portal-brand-stage">
+        <!-- Download Icon that emerges upon merge -->
+        <div class="portal-merged-icon-wrap" id="portal-merged-icon-wrap">
+          <svg class="portal-merged-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </div>
+        <div class="portal-icon-bloom"></div>
+
+        <!-- Typography with Blur-to-Sharp Reveal -->
+        <h1 class="welcome-brand">ContentGrab</h1>
+        <p class="welcome-subtitle">Built by Arif Mohamed</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    try {
+      if (sessionStorage.getItem('contentgrab_splash_shown')) {
+        var _ws = document.getElementById('welcome-screen');
+        if (_ws) _ws.style.display = 'none';
+      }
+    } catch (e) {}
+  </script>
+
+  <!-- Top App Header -->
+  <header class="app-topbar">
+    <div class="topbar-inner">
+      <div class="app-brand">
+        <div class="brand-glyph">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </div>
+        <span class="brand-title">ContentGrab</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Top Category Navigation Bar (Matches Reference Screenshot) -->
+  <nav class="category-navbar" aria-label="Media Categories">
+    <div class="category-nav-container">
+      <div class="category-tabs" id="category-tabs" role="tablist">
+
+        <!-- 1. Reels -->
+        <button type="button" class="category-tab active" data-category="reels" role="tab" aria-selected="true" id="tab-reels">
+          <div class="tab-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon>
+            </svg>
+          </div>
+          <span class="tab-label">Reels</span>
+        </button>
+
+        <!-- 2. Post -->
+        <button type="button" class="category-tab" data-category="post" role="tab" aria-selected="false" id="tab-post">
+          <div class="tab-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+          </div>
+          <span class="tab-label">Post</span>
+        </button>
+
+        <!-- 3. DP (Profile Picture) -->
+        <button type="button" class="category-tab" data-category="dp" role="tab" aria-selected="false" id="tab-dp">
+          <div class="tab-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 3h3v3M5 3H2v3M19 21h3v-3M5 21H2v-3"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+              <path d="M7 18c0-2.5 2.2-4 5-4s5 1.5 5 4"></path>
+            </svg>
+          </div>
+          <span class="tab-label">DP</span>
+        </button>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Downloader Container -->
+  <main class="main-stage">
+    <div class="stage-container">
+
+      <!-- Main Dynamic Heading & Branding -->
+      <h1 class="main-heading" id="main-heading">ContentGrab</h1>
+      <p class="main-subheading" id="main-subheading">Download Reels Here</p>
+
+      <!-- URL Input & Search Form -->
+      <form id="downloader-form" class="downloader-form" novalidate>
+        
+        <!-- Large Horizontal Input Box (Reference Screenshot Design) -->
+        <div class="input-container">
+          <span class="input-link-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+          </span>
+
+          <input
+            type="text"
+            id="url-input"
+            class="url-input"
+            placeholder="Paste Reel link here (e.g. instagram.com/reel/...)..."
+            autocomplete="off"
+            spellcheck="false"
+            required
+          />
+
+          <!-- Attached Right-side Action Controls (Instagram Gradient) -->
+          <div class="input-actions-group">
+            <button type="button" id="paste-btn" class="purple-action-btn paste-action-btn" title="Paste link from clipboard">
+              <span>Paste</span>
+            </button>
+            <div class="actions-divider"></div>
+            <button type="button" id="clear-btn" class="purple-action-btn clear-action-btn" title="Clear input">
+              <span>X</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Full-Width SEARCH Button (Instagram Gradient) -->
+        <button type="submit" id="search-btn" class="search-submit-btn">
+          <span class="search-icon-wrapper">
+            <svg class="search-arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"></path>
+            </svg>
+            <span class="btn-spinner" style="display: none;"></span>
+          </span>
+          <span class="search-btn-text">SEARCH</span>
+        </button>
+
+      </form>
+
+      <!-- Live Status Notice / Loading Indicator -->
+      <div id="status-card" class="status-card" style="display: none;" role="status">
+        <div class="status-spinner-circle"></div>
+        <div class="status-text-group">
+          <p class="status-head" id="status-head">Connecting to Instagram...</p>
+          <p class="status-sub" id="status-sub">Retrieving media streams and metadata.</p>
+        </div>
+      </div>
+
+      <!-- Error Notice Banner (Distinguishes URL Recognition vs Media Access Limitation) -->
+      <div id="error-card" class="error-card" style="display: none;" role="alert">
+        <div class="error-icon" id="error-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <div class="error-content">
+          <div class="error-header-row">
+            <span class="error-badge-tag" id="error-badge-tag" style="display: none;">URL RECOGNIZED</span>
+            <p class="error-title" id="error-title">Media Retrieval Notice</p>
+          </div>
+          <p class="error-body" id="error-body">Unable to retrieve media.</p>
+          <div class="error-distinction-grid" id="error-distinction-grid" style="display: none;">
+            <div class="distinction-item distinction-recognized">
+              <span class="distinction-label">URL Classification</span>
+              <span class="distinction-val" id="distinction-url-type">Instagram Story</span>
+            </div>
+            <div class="distinction-item distinction-status">
+              <span class="distinction-label">Download Status</span>
+              <span class="distinction-val" id="distinction-access-status">Login Required by Instagram</span>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="error-dismiss-btn" id="error-dismiss-btn" aria-label="Dismiss error">×</button>
+      </div>
+
+      <!-- Media Results Section (Rendered upon retrieval) -->
+      <section id="results-section" class="results-section" style="display: none;">
+        <div class="results-header">
+          <div class="results-info">
+            <span class="results-badge" id="results-badge">REEL</span>
+            <h2 class="results-title" id="results-title">Retrieved Media</h2>
+            <p class="results-author" id="results-author">By @instagram • 1 item ready</p>
+          </div>
+          <div class="results-actions" id="results-actions">
+            <!-- Dynamically populated (e.g. Download All as ZIP) -->
+          </div>
+        </div>
+
+        <div id="results-content" class="results-grid">
+          <!-- Dynamically populated with working media cards -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-shelf" aria-live="polite"></div>
+
+  <!-- Minimal Dark Footer -->
+  <footer class="app-footer">
+    <div class="footer-wrap">
+      <div class="footer-meta">
+        <span class="footer-brand">ContentGrab — Built by Arif Mohamed</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "contentgrab",
+  "version": "1.0.0",
+  "description": "ContentGrab — Fast and modern personal utility to download public Instagram media locally.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test test/test.js"
+  },
+  "keywords": [
+    "instagram",
+    "downloader",
+    "reels",
+    "carousel",
+    "media"
+  ],
+  "author": "Antigravity",
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}
+
