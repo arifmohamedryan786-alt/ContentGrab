@@ -6,6 +6,8 @@ to reliably extract public Instagram Reels, Videos, Photos, Carousels, and Profi
 """
 
 import sys
+import os
+import shutil
 import json
 import re
 import html
