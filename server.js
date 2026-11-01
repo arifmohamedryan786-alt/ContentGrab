@@ -14,15 +14,14 @@ const PORT = process.env.PORT || 3000;
 
 // Security and CORS middleware
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow local origins (localhost, 127.0.0.1) and direct browser navigation
-    if (!origin || origin.includes('127.0.0.1') || origin.includes('localhost')) {
-      return callback(null, true);
-    }
-    callback(new Error('Cross-Origin Request Blocked'));
-  }
+  origin: [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'https://contentgrab.vercel.app'
+  ],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
 }));
-
 // Basic security headers
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
